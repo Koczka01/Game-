@@ -1,18 +1,25 @@
 import tkinter as tk
+from PIL import ImageTk, Image
 
 def szoveg_valtoztatas():
-    alma.set("Meow")
-
+    if alma.get() == 'Meow':
+        alma.set('Vau')
+    else:
+        alma.set('Meow')
 
 root = tk.Tk()
 
-root.title('Almaaa')
+root.title('Ultra mega epic game')
 
-label = tk.Label(root, text="Szia, Tkinter!")
+alma = tk.StringVar(root, 'Vau')
+label = tk.Label(root, textvariable=alma)
 label.pack()
-alma = tk.StringVar('Almaaa')
 
-gomb = tk.Button(root, text="Mehet", command=koszonj)
+gomb = tk.Button(root, textvariable=alma, command=szoveg_valtoztatas)
 gomb.pack()
+
+img = ImageTk.PhotoImage(Image.open("images.jpg"))
+panel = tk.Label(root, image = img)
+panel.pack(side = "bottom", fill = "both", expand = "yes")
 
 root.mainloop()
